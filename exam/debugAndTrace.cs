@@ -9,9 +9,13 @@ namespace exam
 {
     internal class debugAndTrace
     {
-        public static void debugAction(string str)
+        public static void onStart()
         {
             Trace.Listeners.Add(new TextWriterTraceListener("debug.txt"));
+        }
+
+        public static void debugAction(string str)
+        {
             Debug.WriteLine(str);
             Trace.Flush();
         }

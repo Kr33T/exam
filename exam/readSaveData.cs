@@ -10,6 +10,9 @@ namespace exam
     internal class readSaveData
     {
         public static StreamWriter sw = null;
+        /// <summary>
+        /// Удаляет файл, потом создает новый
+        /// </summary>
         public static void onStart(string path)
         {
             File.Delete(path);
