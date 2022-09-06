@@ -18,12 +18,16 @@ namespace exam
             File.Delete(path);
             sw = new StreamWriter(path);
         }
-
+        /// <summary>
+        /// Необходим для записи строки в файл
+        /// </summary>
         public static void Save(string str)
         {
             sw.WriteLine(str);
         }
-
+        /// <summary>
+        /// Необходим для закрытия streamWriter
+        /// </summary>
         public static void onEnd()
         {
             sw.Close();

@@ -9,11 +9,16 @@ namespace exam
 {
     internal class debugAndTrace
     {
+        /// <summary>
+        /// Добавление слушателя
+        /// </summary>
         public static void onStart()
         {
             Trace.Listeners.Add(new TextWriterTraceListener("debug.txt"));
         }
-
+        /// <summary>
+        /// Запись действия в файл дэбага
+        /// </summary>
         public static void debugAction(string str)
         {
             Debug.WriteLine(str);

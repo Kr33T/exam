@@ -32,13 +32,18 @@ namespace exam
                 tax = 30; // налог
             }
         }
-
+        /// <summary>
+        /// Вычисление вклада
+        /// </summary>
+        /// <returns></returns>
         public int GetPercentMoney() // прибавка процента
         {
             var m = (int)Math.Round(percent * all_money / 100);
             return m - (tax * m / 100);
         }
-
+        /// <summary>
+        /// Вычисление процентной ставки
+        /// </summary>
         public void UpdatePercent() // обновление процента
         {
             percent += 0.5;
