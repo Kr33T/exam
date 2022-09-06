@@ -2,57 +2,49 @@
 
 namespace exam
 {
+    public class User
+    {
+        public int money;
+        public int month = 12;
+
+        public User(int money)
+        {
+            this.money = money;
+        }
+    }
+
     class program
     {
         static void Main(string[] args)
         {
             debugAndTrace.onStart();
-            year(Convert.ToDouble(Console.ReadLine()));
-        }
+            readSaveData.onStart("answer.txt");
 
-        static void year(double N)
-        {
-            int monthCount = 1;
-            double percent = getPercent(N);
-            for (int i = 0; i < 12; i++)
+            int money = 0;
+
+            Console.Write("Пополните счет: ");
+            money = Convert.ToInt32(Console.ReadLine()); // пополнение счета
+
+            int startMoney = money;
+            User user = new User(money);
+            userDeposit deposit = new userDeposit(user.money);
+            for (int i = 1; i <= user.month; i++)
             {
-                if (monthCount == 3)
+                deposit.all_money += deposit.GetPercentMoney(); // прибавка процента
+                debugAndTrace.debugAction($"{deposit.all_money}, {deposit.percent}%");
+                readSaveData.Save($"{deposit.all_money}, {deposit.percent}%");
+                Console.WriteLine($"Баланс: {deposit.all_money}\nВаша процентная ставка: {deposit.percent}%");
+
+                if (i % 3 == 0)
                 {
-                    percent = percent + 0.5;
-                    monthCount = 0;
+                    deposit.UpdatePercent(); // обновление процента
                 }
-                monthCount++;
             }
-        }
-
-        static double getPercent(double N)
-        {
-            int a;
-            if(N < 700000)
-            {
-                a = Convert.ToInt32(Math.Floor(N / 50000.0)) + 1;
-            }
-            else
-            {
-
-            }
-            return a;
+            debugAndTrace.debugAction($"Доход за год: {deposit.all_money - startMoney}");
+            readSaveData.Save($"Доход за год: {deposit.all_money - startMoney}");
+            Console.WriteLine($"Доход за год: {deposit.all_money - startMoney}");
+            readSaveData.onEnd();
+            Console.ReadKey();
         }
     }
 }
-/*
-0-50 1
-50-100 2
-100-150 3
-150-200 4
-200-250 5
-250-300 6
-300-350 7
-350-400 8
-400-450 9
-450-500 10
-500-550 11
-550-600 12
-600-650 13
-650-700 14
- */
